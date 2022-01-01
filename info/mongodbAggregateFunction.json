@@ -1,0 +1,84 @@
+[
+    {
+        "$search": {
+            "index": "productSearchIndex", 
+            "compound": {
+                "must": [
+                    {
+                        "autocomplete": {
+                            "query": "red shirt", 
+                            "path": "keywordIndex", 
+                            "fuzzy": {
+                                "maxEdits": 2, 
+                                "prefixLength": 3
+                            }
+                        }
+                    },
+                    {
+                        "geoWithin": {
+                            "geometry": {
+                                "type": "Polygon", 
+                                "coordinates": [
+                                    [
+                                        [
+                                            100.95118649712171,
+                                            31.801705832226844
+                                        ],
+                                        [
+                                            57.093764622121704,
+                                            31.801705832226844
+                                        ],
+                                        [
+                                            57.093764622121704,
+                                            7.012281981872861
+                                        ],
+                                        [
+                                            100.95118649712171,
+                                            7.012281981872861
+                                        ],
+                                        [
+                                            100.95118649712171,
+                                            31.801705832226844
+                                        ]
+                                    ]
+                                ]
+                            }, 
+                            "path": "shopInfo.geolocation"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "$group": {
+            "_id": {
+                "shopInfo": "$shopInfo"
+            }, 
+            "productList": {
+                "$push": "$$ROOT"
+            }
+        }
+    },
+    {
+        "$limit": 50
+    },
+    {
+        "$project": {
+            "shopInfo": "$_id.shopInfo", 
+            "productInfo": {
+                "$arrayElemAt": [
+                    "$productList",
+                    0
+                ]
+            }
+        }
+    },
+    {
+        "$project": {
+            "productInfo.keywordIndex": 0, 
+            "productInfo.shopInfo": 0, 
+            "_id": 0
+        }
+    }
+]
