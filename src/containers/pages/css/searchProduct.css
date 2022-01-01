@@ -1,0 +1,8 @@
+.request-popup .leaflet-popup-content-wrapper {
+    width: 220px;
+	border-radius: 0px;
+    padding: 0px;
+}
+.request-popup .leaflet-popup-content-wrapper .leaflet-popup-content{
+    margin: 0px;
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;1,600&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    font-family: 'Mulish', sans-serif;
+}
+
+body {
+    padding-top: 56px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
