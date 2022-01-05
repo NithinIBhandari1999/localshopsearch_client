@@ -291,7 +291,7 @@ const ProductUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="priceMrp"
-								placeholder="Enter your product name"
+								placeholder="Enter product mrp"
 								value={formData.priceMrp}
 								onChange={(t) => {
 									setFormData({
@@ -313,7 +313,7 @@ const ProductUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="priceSelling"
-								placeholder="Enter your product name"
+								placeholder="Enter selling price"
 								value={formData.priceSelling}
 								onChange={(t) => {
 									setFormData({
@@ -335,7 +335,7 @@ const ProductUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="productQuantity"
-								placeholder="Enter your product name"
+								placeholder="Enter product quantity"
 								value={formData.productQuantity}
 								onChange={(t) => {
 									setFormData({
@@ -357,7 +357,7 @@ const ProductUpdate = (props) => {
 								type="text"
 								class="form-control"
 								id="productUnits"
-								placeholder="Enter your product name"
+								placeholder="Enter product units"
 								value={formData.productUnits}
 								onChange={(t) => {
 									setFormData({

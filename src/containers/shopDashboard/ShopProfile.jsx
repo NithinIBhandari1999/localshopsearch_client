@@ -147,7 +147,7 @@ const ShopAdd = () => {
 				<div className="col-12 col-md-6 col-lg-6 py-2">
 					<div>
 						<div>Shop Description:</div>
-						<div>{formData.shopDescription}</div>
+						<div className="white-space-break-space">{formData.shopDescription}</div>
 					</div>
 				</div>
 
@@ -162,9 +162,9 @@ const ShopAdd = () => {
 				{/* Field Name */}
 				<div className="col-12 col-md-6 col-lg-6 py-2">
 					<div>
-						<div>Locality, City, State:</div>
+						<div>Locality, City, State, Country:</div>
 						<div>
-							{formData.localityName}, {formData.cityName}, {formData.stateName}
+							{formData.localityName}, {formData.cityName}, {formData.stateName}, {formData.countryName}
 						</div>
 					</div>
 				</div>
@@ -208,7 +208,7 @@ const ShopAdd = () => {
 		return (
 			<Modal
 				show={modalStatusUpdate.statusOpen}
-				size="lg"
+				size="xl"
 				onHide={() =>
 					setModalStatusUpdate({
 						statusOpen: false,

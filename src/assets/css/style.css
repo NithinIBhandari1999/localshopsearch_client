@@ -15,3 +15,7 @@ body {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.white-space-break-space {
+    white-space: break-spaces;
+}

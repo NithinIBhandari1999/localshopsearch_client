@@ -38,9 +38,13 @@ const Login = () => {
 			hasError = true;
 		}
 
-		tempError.password = inputValidation.isInputPasswordValid(formData.password);
+		tempError.password = inputValidation.isInputEmpty(formData.password);
 		if (tempError.password !== "") {
 			hasError = true;
+		} else {
+			if(formData.password.length < 8){
+				tempError.password = "Password must be at least 8 characters long";
+			}
 		}
 
 		setFormError({

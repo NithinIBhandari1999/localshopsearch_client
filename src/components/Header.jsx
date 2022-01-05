@@ -47,7 +47,7 @@ const Header = (props) => {
 											<Link
 												className="nav-link active"
 												aria-current="page"
-												to={"/user/dashboard"}
+												to={"/user/dashboard/shop/list"}
 											>
 												Dashboard
 											</Link>

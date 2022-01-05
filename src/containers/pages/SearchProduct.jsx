@@ -569,17 +569,17 @@ const ProductDisplay = (props) => {
 	return (
 		<div className="border p-2" id={`product_${FormData._id}`}>
 			<div className="fw-bold">
-				{itemProduct.productInfo.productName}
-				{itemProduct.productInfo.productPrice !== 0 && (
+				{itemProduct.productName}
+				{itemProduct.productPrice !== 0 && (
 					<span className="px-2">
-						(Rs {itemProduct.productInfo.priceSelling} /{" "}
-						{itemProduct.productInfo.productQuantity}{" "}
-						{itemProduct.productInfo.productUnits})
+						(Rs {itemProduct.priceSelling} /{" "}
+						{itemProduct.productQuantity}{" "}
+						{itemProduct.productUnits})
 					</span>
 				)}
 			</div>
 
-			{itemProduct?.productInfo?.imageList?.length >= 1 && (
+			{itemProduct?.imageList?.length >= 1 && (
 				<div
 					style={{
 						overflowX: "scroll",
@@ -589,7 +589,7 @@ const ProductDisplay = (props) => {
 					}}
 				>
 					<div>
-						{itemProduct?.productInfo?.imageList.map((item) => {
+						{itemProduct?.imageList.map((item) => {
 							return (
 								<div className="d-inline-block border p-1 m-1" key={item.imageLink}>
 									<div>
@@ -613,7 +613,7 @@ const ProductDisplay = (props) => {
 						href={`https://api.whatsapp.com/send/?phone=91${
 							itemProduct?.shopInfo?.whatsappNumber
 						}&text=${encodeURI(
-							`Hi, I want to known more information about ${itemProduct.productInfo.plantName}.`
+							`Hi, I want to known more information about ${itemProduct.productName}.`
 						)}`}
 						target={"_blank"}
 						rel="noreferrer"
@@ -640,7 +640,7 @@ const ProductDisplay = (props) => {
 					Shop Info
 				</a>
 				<a
-					href={`/shop/info/${itemProduct?.shopInfo?.uniqueUrl}#product_${itemProduct?.productInfo?.uniqueUrl}`}
+					href={`/shop/info/${itemProduct?.shopInfo?.uniqueUrl}#product_${itemProduct?.uniqueUrl}`}
 					target={"_blank"}
 					rel="noreferrer"
 					className="primary-color-bg text-white p-1 mx-1 rounded text-decoration-none"

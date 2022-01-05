@@ -18,6 +18,8 @@ const ShopProfileUpdate = (props) => {
 		shopDescription: "",
 
 		addressFull: "",
+
+		countryName: "",
 		stateName: "",
 		cityName: "",
 		localityName: "",
@@ -36,6 +38,8 @@ const ShopProfileUpdate = (props) => {
 		shopDescription: "",
 
 		addressFull: "",
+
+		countryName: "",
 		stateName: "",
 		cityName: "",
 		localityName: "",
@@ -74,6 +78,8 @@ const ShopProfileUpdate = (props) => {
 			shopDescription: "",
 
 			addressFull: "",
+
+			countryName: "",
 			stateName: "",
 			cityName: "",
 			localityName: "",
@@ -87,6 +93,36 @@ const ShopProfileUpdate = (props) => {
 			longitude: "",
 		};		
 
+		tempError.shopName = inputValidation.isInputEmpty(formData.shopName);
+		if (tempError.shopName !== "") {
+			hasError = true;
+		}
+
+		tempError.shopDescription = inputValidation.isInputEmpty(formData.shopDescription);
+		if (tempError.shopDescription !== "") {
+			hasError = true;
+		}
+
+		tempError.addressFull = inputValidation.isInputEmpty(formData.addressFull);
+		if (tempError.addressFull !== "") {
+			hasError = true;
+		}
+
+		tempError.countryName = inputValidation.isInputEmpty(formData.countryName);
+		if (tempError.countryName !== "") {
+			hasError = true;
+		}
+
+		tempError.stateName = inputValidation.isInputEmpty(formData.stateName);
+		if (tempError.stateName !== "") {
+			hasError = true;
+		}
+
+		tempError.cityName = inputValidation.isInputEmpty(formData.cityName);
+		if (tempError.cityName !== "") {
+			hasError = true;
+		}
+
 		tempError.localityName = inputValidation.isInputEmpty(formData.localityName);
 		if (tempError.localityName !== "") {
 			hasError = true;
@@ -99,16 +135,6 @@ const ShopProfileUpdate = (props) => {
 
 		tempError.whatsappNumber = inputValidation.isInputPhoneNumberValid(formData.whatsappNumber);
 		if (tempError.whatsappNumber !== "") {
-			hasError = true;
-		}
-
-		tempError.shopDescription = inputValidation.isInputEmpty(formData.shopDescription);
-		if (tempError.shopDescription !== "") {
-			hasError = true;
-		}
-
-		tempError.addressFull = inputValidation.isInputEmpty(formData.addressFull);
-		if (tempError.addressFull !== "") {
 			hasError = true;
 		}
 
@@ -313,7 +339,7 @@ const ShopProfileUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="phoneNumber"
-								placeholder="Enter your shop name"
+								placeholder="Enter your shop phone number"
 								value={formData.phoneNumber}
 								onChange={(t) => {
 									setFormData({
@@ -336,7 +362,7 @@ const ShopProfileUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="whatsappNumber"
-								placeholder="Enter your shop name"
+								placeholder="Enter your shop whatsapp number"
 								value={formData.whatsappNumber}
 								onChange={(t) => {
 									setFormData({
@@ -393,8 +419,32 @@ const ShopProfileUpdate = (props) => {
 						</div>
 					</div>
 
+					{/* Field Country Name */}
+					<div className="col-12 col-md-6 col-lg-3 py-2">
+						<div>
+							<label for="countryName" class="form-label">
+								Country Name *
+							</label>
+							<input
+								type="text"
+								class="form-control"
+								id="countryName"
+								placeholder="Enter Country name"
+								value={formData.countryName}
+								onChange={(t) => {
+									setFormData({
+										...formData,
+										countryName: t.target.value,
+									});
+								}}
+								disabled={true}
+							/>
+							<div className="text-danger">{formError.countryName}</div>
+						</div>
+					</div>
+
 					{/* Field Name */}
-					<div className="col-12 col-md-6 col-lg-4 py-2">
+					<div className="col-12 col-md-6 col-lg-3 py-2">
 						<div>
 							<label for="stateName" class="form-label">
 								State Name *
@@ -403,7 +453,7 @@ const ShopProfileUpdate = (props) => {
 								type="text"
 								class="form-control"
 								id="stateName"
-								placeholder="Enter your State name"
+								placeholder="Enter State name"
 								value={formData.stateName}
 								onChange={(t) => {
 									setFormData({
@@ -418,7 +468,7 @@ const ShopProfileUpdate = (props) => {
 					</div>
 
 					{/* Field Name */}
-					<div className="col-12 col-md-6 col-lg-4 py-2">
+					<div className="col-12 col-md-6 col-lg-3 py-2">
 						<div>
 							<label for="cityName" class="form-label">
 								City Name *
@@ -427,7 +477,7 @@ const ShopProfileUpdate = (props) => {
 								type="text"
 								class="form-control"
 								id="cityName"
-								placeholder="Enter your City name"
+								placeholder="Enter City name"
 								value={formData.cityName}
 								onChange={(t) => {
 									setFormData({
@@ -442,7 +492,7 @@ const ShopProfileUpdate = (props) => {
 					</div>
 
 					{/* Field Name */}
-					<div className="col-12 col-md-6 col-lg-4 py-2">
+					<div className="col-12 col-md-6 col-lg-3 py-2">
 						<div>
 							<label for="localityName" class="form-label">
 								Area / locality *
@@ -459,13 +509,14 @@ const ShopProfileUpdate = (props) => {
 										localityName: t.target.value,
 									});
 								}}
+								disabled={true}
 							/>
 							<div className="text-danger">{formError.localityName}</div>
 						</div>
 					</div>
 
 					{/* Field Name */}
-					<div className="col-12 col-md-6 col-lg-4 py-2">
+					<div className="col-12 col-md-6 col-lg-3 py-2">
 						<div>
 							<label for="latitude" class="form-label">
 								Latitude
@@ -474,7 +525,7 @@ const ShopProfileUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="latitude"
-								placeholder="Enter your shop name"
+								placeholder="Enter your shop latitude"
 								value={formData.latitude}
 								onChange={(t) => {
 									setFormData({
@@ -497,7 +548,7 @@ const ShopProfileUpdate = (props) => {
 					</div>
 
 					{/* Field Name */}
-					<div className="col-12 col-md-6 col-lg-4 py-2">
+					<div className="col-12 col-md-6 col-lg-3 py-2">
 						<div>
 							<label for="longitude" class="form-label">
 								Longitude
@@ -506,7 +557,7 @@ const ShopProfileUpdate = (props) => {
 								type="number"
 								class="form-control"
 								id="longitude"
-								placeholder="Enter your shop name"
+								placeholder="Enter your shop Longitude"
 								value={formData.longitude}
 								onChange={(t) => {
 									setFormData({

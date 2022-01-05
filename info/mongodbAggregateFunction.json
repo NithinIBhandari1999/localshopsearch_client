@@ -1,15 +1,15 @@
 [
     {
         "$search": {
-            "index": "productSearchIndex", 
+            "index": "productSearchIndex",
             "compound": {
                 "must": [
                     {
                         "autocomplete": {
-                            "query": "red shirt", 
-                            "path": "keywordIndex", 
+                            "query": "Gulab Jamun",
+                            "path": "keywordIndex",
                             "fuzzy": {
-                                "maxEdits": 2, 
+                                "maxEdits": 2,
                                 "prefixLength": 3
                             }
                         }
@@ -17,32 +17,32 @@
                     {
                         "geoWithin": {
                             "geometry": {
-                                "type": "Polygon", 
+                                "type": "Polygon",
                                 "coordinates": [
                                     [
                                         [
-                                            100.95118649712171,
-                                            31.801705832226844
+                                            125.74866919485856,
+                                            47.517274320049886
                                         ],
                                         [
-                                            57.093764622121704,
-                                            31.801705832226844
+                                            28.27796606985855,
+                                            47.517274320049886
                                         ],
                                         [
-                                            57.093764622121704,
-                                            7.012281981872861
+                                            28.27796606985855,
+                                            -0.2635619350390889
                                         ],
                                         [
-                                            100.95118649712171,
-                                            7.012281981872861
+                                            125.74866919485856,
+                                            -0.2635619350390889
                                         ],
                                         [
-                                            100.95118649712171,
-                                            31.801705832226844
+                                            125.74866919485856,
+                                            47.517274320049886
                                         ]
                                     ]
                                 ]
-                            }, 
+                            },
                             "path": "shopInfo.geolocation"
                         }
                     }
@@ -52,9 +52,7 @@
     },
     {
         "$group": {
-            "_id": {
-                "shopInfo": "$shopInfo"
-            }, 
+            "_id": "$shopId",
             "productList": {
                 "$push": "$$ROOT"
             }
@@ -65,7 +63,6 @@
     },
     {
         "$project": {
-            "shopInfo": "$_id.shopInfo", 
             "productInfo": {
                 "$arrayElemAt": [
                     "$productList",
@@ -76,9 +73,13 @@
     },
     {
         "$project": {
-            "productInfo.keywordIndex": 0, 
-            "productInfo.shopInfo": 0, 
+            "productInfo.keywordIndex": 0,
             "_id": 0
+        }
+    },
+    {
+        "$replaceRoot": {
+            "newRoot": "$productInfo"
         }
     }
 ]

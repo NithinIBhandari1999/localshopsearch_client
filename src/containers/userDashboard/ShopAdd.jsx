@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import configKeys from "../../config/keys";
@@ -69,10 +69,11 @@ const ShopAdd = (props) => {
 			shopDescription: "",
 
 			addressFull: "",
+
+			countryName: "",
 			stateName: "",
 			cityName: "",
 			localityName: "",
-			googleMapEmbedLink: "",
 
 			phoneNumber: "",
 			whatsappNumber: "",
@@ -85,6 +86,21 @@ const ShopAdd = (props) => {
 
 		tempError.shopName = inputValidation.isInputEmpty(formData.shopName);
 		if (tempError.shopName !== "") {
+			hasError = true;
+		}
+
+		tempError.shopDescription = inputValidation.isInputEmpty(formData.shopDescription);
+		if (tempError.shopDescription !== "") {
+			hasError = true;
+		}
+
+		tempError.addressFull = inputValidation.isInputEmpty(formData.addressFull);
+		if (tempError.addressFull !== "") {
+			hasError = true;
+		}
+
+		tempError.countryName = inputValidation.isInputEmpty(formData.countryName);
+		if (tempError.countryName !== "") {
 			hasError = true;
 		}
 
@@ -110,16 +126,6 @@ const ShopAdd = (props) => {
 
 		tempError.whatsappNumber = inputValidation.isInputPhoneNumberValid(formData.whatsappNumber);
 		if (tempError.whatsappNumber !== "") {
-			hasError = true;
-		}
-
-		tempError.shopDescription = inputValidation.isInputEmpty(formData.shopDescription);
-		if (tempError.shopDescription !== "") {
-			hasError = true;
-		}
-
-		tempError.addressFull = inputValidation.isInputEmpty(formData.addressFull);
-		if (tempError.addressFull !== "") {
 			hasError = true;
 		}
 
@@ -202,6 +208,26 @@ const ShopAdd = (props) => {
 		}
 	};
 
+	useEffect(() => {
+		estimateLocation();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const estimateLocation = async () => {
+		try {
+			const res = await axios.get("https://geolocation.localshopsearch.workers.dev/");
+
+			console.log(res.data);
+
+			setFormData({
+				...formData,
+				countryName: res.data.country_name,
+				stateName: res.data.region_name,
+				cityName: res.data.city,
+			});
+		} catch (error) {}
+	};
+
 	return (
 		<div>
 			<div className="">
@@ -260,7 +286,7 @@ const ShopAdd = (props) => {
 									type="number"
 									class="form-control"
 									id="phoneNumber"
-									placeholder="Enter your shop name"
+									placeholder="Enter your shop phone number"
 									value={formData.phoneNumber}
 									onChange={(t) => {
 										setFormData({
@@ -283,7 +309,7 @@ const ShopAdd = (props) => {
 									type="number"
 									class="form-control"
 									id="whatsappNumber"
-									placeholder="Enter your shop name"
+									placeholder="Enter your shop whatsapp number"
 									value={formData.whatsappNumber}
 									onChange={(t) => {
 										setFormData({
@@ -340,8 +366,31 @@ const ShopAdd = (props) => {
 							</div>
 						</div>
 
+						{/* Field Country Name */}
+						<div className="col-12 col-md-6 col-lg-3 py-2">
+							<div>
+								<label for="countryName" class="form-label">
+									Country Name *
+								</label>
+								<input
+									type="text"
+									class="form-control"
+									id="countryName"
+									placeholder="Enter Country name"
+									value={formData.countryName}
+									onChange={(t) => {
+										setFormData({
+											...formData,
+											countryName: t.target.value,
+										});
+									}}
+								/>
+								<div className="text-danger">{formError.countryName}</div>
+							</div>
+						</div>
+
 						{/* Field Name */}
-						<div className="col-12 col-md-6 col-lg-4 py-2">
+						<div className="col-12 col-md-6 col-lg-3 py-2">
 							<div>
 								<label for="stateName" class="form-label">
 									State Name *
@@ -350,7 +399,7 @@ const ShopAdd = (props) => {
 									type="text"
 									class="form-control"
 									id="stateName"
-									placeholder="Enter your State name"
+									placeholder="Enter State name"
 									value={formData.stateName}
 									onChange={(t) => {
 										setFormData({
@@ -364,7 +413,7 @@ const ShopAdd = (props) => {
 						</div>
 
 						{/* Field Name */}
-						<div className="col-12 col-md-6 col-lg-4 py-2">
+						<div className="col-12 col-md-6 col-lg-3 py-2">
 							<div>
 								<label for="cityName" class="form-label">
 									City Name *
@@ -373,7 +422,7 @@ const ShopAdd = (props) => {
 									type="text"
 									class="form-control"
 									id="cityName"
-									placeholder="Enter your City name"
+									placeholder="Enter City name"
 									value={formData.cityName}
 									onChange={(t) => {
 										setFormData({
@@ -387,7 +436,7 @@ const ShopAdd = (props) => {
 						</div>
 
 						{/* Field Name */}
-						<div className="col-12 col-md-6 col-lg-4 py-2">
+						<div className="col-12 col-md-6 col-lg-3 py-2">
 							<div>
 								<label for="localityName" class="form-label">
 									Area / locality *
@@ -410,7 +459,7 @@ const ShopAdd = (props) => {
 						</div>
 
 						{/* Field Name */}
-						<div className="col-12 col-md-6 col-lg-4 py-2">
+						<div className="col-12 col-md-6 col-lg-3 py-2">
 							<div>
 								<label for="latitude" class="form-label">
 									Latitude
@@ -419,7 +468,7 @@ const ShopAdd = (props) => {
 									type="number"
 									class="form-control"
 									id="latitude"
-									placeholder="Enter your shop name"
+									placeholder="Enter your shop latitude"
 									value={formData.latitude}
 									onChange={(t) => {
 										setFormData({
@@ -442,7 +491,7 @@ const ShopAdd = (props) => {
 						</div>
 
 						{/* Field Name */}
-						<div className="col-12 col-md-6 col-lg-4 py-2">
+						<div className="col-12 col-md-6 col-lg-3 py-2">
 							<div>
 								<label for="longitude" class="form-label">
 									Longitude
@@ -451,7 +500,7 @@ const ShopAdd = (props) => {
 									type="number"
 									class="form-control"
 									id="longitude"
-									placeholder="Enter your shop name"
+									placeholder="Enter your shop Longitude"
 									value={formData.longitude}
 									onChange={(t) => {
 										setFormData({

@@ -39,11 +39,11 @@ const ShopInfo = () => {
 					}
 				}, 250);
 			}
-			setFormSubmitLoading(false)
+			setFormSubmitLoading(false);
 			setFormSubmitError("");
 		} catch (error) {
 			setFormSubmitError("Shop either is deleted or does not exist.");
-			setFormSubmitLoading(false)
+			setFormSubmitLoading(false);
 		}
 	};
 
@@ -54,7 +54,8 @@ const ShopInfo = () => {
 					<div className="col-12 col-md-6 col-lg-4">
 						<h1>{formData.shopName}</h1>
 						<p>
-							{formData.cityName}, {formData.stateName}
+							{formData.localityName}, {formData.cityName}, {formData.stateName}, {" "}
+							{formData.countryName}
 						</p>
 
 						{formData.whatsappNumber !== "" && (
@@ -85,7 +86,7 @@ const ShopInfo = () => {
 					</div>
 					<div className="col-12 col-md-6 col-lg-8">
 						<p>About Shop:</p>
-						<p className="fw-bold">{formData.shopDescription}</p>
+						<p className="fw-bold white-space-break-space">{formData.shopDescription}</p>
 						<p>Full Address: </p>
 						<p className="fw-bold">{formData.addressFull}</p>
 					</div>
@@ -98,6 +99,13 @@ const ShopInfo = () => {
 		return (
 			<div>
 				<h2 className="my-3">Product List</h2>
+				<div>
+					{formData?.productList?.length === 0 && (
+						<div>
+							No product added by shop. Please come again later.
+						</div>
+					)}
+				</div>
 				<div className="row">
 					{formData?.productList?.map((itemProduct) => {
 						return <ProductDisplay itemProduct={itemProduct} formData={formData} />;
@@ -118,21 +126,11 @@ const ShopInfo = () => {
 
 	return (
 		<div className="container-sm">
-			{
-				formSubmitLoading && (
-					<div className="text-center text-info my-5">Loading...</div>
-				)
-			}
-			{
-				!formSubmitLoading && formSubmitError !== "" && (
-					<div className="text-center text-danger my-5">{formSubmitError}</div>
-				)
-			}
-			{
-				!formSubmitLoading && formSubmitError === "" && (
-					<div>{renderPage()}</div>
-				)
-			}
+			{formSubmitLoading && <div className="text-center text-info my-5">Loading...</div>}
+			{!formSubmitLoading && formSubmitError !== "" && (
+				<div className="text-center text-danger my-5">{formSubmitError}</div>
+			)}
+			{!formSubmitLoading && formSubmitError === "" && <div>{renderPage()}</div>}
 		</div>
 	);
 };
@@ -147,10 +145,16 @@ const ProductDisplay = (props) => {
 				<div className="fw-bold">
 					{itemProduct.productName}
 					{itemProduct.priceSelling !== 0 && (
-						<span className="px-2">(Rs {itemProduct.priceSelling})</span>
+						<span className="px-2">
+							(Rs {itemProduct.priceSelling} /{" "}
+							{itemProduct.productQuantity}{" "}
+							{itemProduct.productUnits})
+						</span>
 					)}
 				</div>
-				<div>{itemProduct.productDescription}</div>
+				<div
+					className="white-space-break-space"
+				>{itemProduct.productDescription}</div>
 
 				{itemProduct?.imageList?.length >= 1 && (
 					<div
