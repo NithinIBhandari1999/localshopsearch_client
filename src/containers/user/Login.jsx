@@ -78,7 +78,7 @@ const Login = () => {
 				}
 			);
 
-			window.location.replace("/user/dashboard");
+			window.location.replace("/user/dashboard/shop/list");
 
 			setRequestLogin({
 				loading: false,

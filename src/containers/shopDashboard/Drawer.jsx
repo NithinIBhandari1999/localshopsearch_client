@@ -42,6 +42,14 @@ const Drawer = (props) => {
 		const tempDrawerItemList = [];
 
 		tempDrawerItemList.push({
+			itemName: "Shop List",
+			menuType: "main",
+			link: `/user/dashboard/shop/list`,
+			iconLink: `/assets/image/drawer/notactive/iconDrawerBack.svg`,
+			iconPrimaryLink: `/assets/image/drawer/active/iconDrawerBack.svg`,
+		});
+
+		tempDrawerItemList.push({
 			itemName: "Dashboard",
 			menuType: "main",
 			link: `/${drawerType}/dashboard/${paramsShopId}/`,
@@ -73,37 +81,19 @@ const Drawer = (props) => {
 			iconPrimaryLink: `/assets/image/drawer/active/iconDrawerStatistics.svg`,
 		});
 
+		if (currentScreen === screenList.sm) {
+			tempDrawerItemList.push({
+				itemName: "Logout",
+				menuType: "main",
+				link: `/logout`,
+				iconLink: `/assets/image/drawer/notactive/iconDrawerLogout.svg`,
+				iconPrimaryLink: `/assets/image/drawer/active/iconDrawerLogout.svg`,
+			});
+		}
+
 		setDrawerItemList(tempDrawerItemList);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	const renderLeftHeader = () => {
-		return (
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "space-between",
-				}}
-				className="drawer_leftHeader_container"
-			>
-				<div>
-					<Link to={"/"} className="primary-color homepageLink">
-						LocalShopSearch.com
-					</Link>
-				</div>
-				<div>
-					{currentScreen === screenList.sm && (
-						<img
-							src="/icons/icon_close.svg"
-							alt="Close Drawer"
-							onClick={() => setDrawerStatus(false)}
-							className="iconOpenClose"
-						/>
-					)}
-				</div>
-			</div>
-		);
-	};
+	}, [currentScreen]);
 
 	const renderLeftContent = () => {
 		return (
@@ -153,99 +143,90 @@ const Drawer = (props) => {
 		);
 	};
 
-	const renderRightHeader = () => {
+	const renderHeader = () => {
 		return (
-			<div
-				className="drawer_rightHeader_container"
-				style={{
-					display: "flex",
-					justifyContent: "space-between",
-				}}
-			>
-				{currentScreen === screenList.sm && (
-					<Link to={"/"} className="primary-color homepageLink">
-						LocalShopSearch.com
-					</Link>
-				)}
-
-				{currentScreen === screenList.sm && drawerStatus === false && (
-					<img
-						src="/icons/icon_menu.svg"
-						alt="Open Drawer"
-						onClick={() => setDrawerStatus(true)}
-						className="iconOpenClose mx-3"
-					/>
-				)}
+			<div className="drawer_header_container">
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-between",
+					}}
+				>
+					<div>
+						<div>
+							<Link to={"/"} className="primary-color homepageLink">
+								LocalShopSearch.com
+							</Link>
+						</div>
+					</div>
+					<div>
+						<div>
+							{currentScreen === screenList.lg && (
+								<Link to={"/logout"} className="textLogout">
+									Logout
+								</Link>
+							)}
+							{currentScreen === screenList.sm && drawerStatus === false && (
+								<img
+									src="/icons/icon_menu.svg"
+									alt="Open Drawer"
+									onClick={() => setDrawerStatus(true)}
+									className="iconOpenClose mx-3"
+								/>
+							)}
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	};
 
 	return (
-		<div
-			style={{
-				display: "flex",
-			}}
-		>
-			{/* Left Side */}
+		<div>
 			<div
 				style={{
-					width: "300px",
-					position: "fixed",
-					display:
-						currentScreen === screenList.sm && drawerStatus === false
-							? "none"
-							: "block",
-					top: "0px",
-					bottom: "0px",
-					zIndex: 250,
-					backgroundColor: "#FFFFFF",
+					display: "flex",
 				}}
 			>
-				{/* Left Header */}
+				{/* Left Side */}
 				<div
 					style={{
-						height: "56px",
-					}}
-				>
-					{renderLeftHeader()}
-				</div>
-
-				{/* Left Content */}
-				<div
-					style={{
-						height: "calc(100vh - 56px)",
-						overflowY: "auto",
-					}}
-				>
-					{renderLeftContent()}
-				</div>
-			</div>
-
-			{/* Right Side */}
-			<div
-				style={{
-					width: currentScreen === screenList.sm ? "100vw" : "calc(100vw - 300px)",
-					marginLeft: currentScreen === screenList.sm ? "0px" : "300px",
-				}}
-			>
-				{/* Right Header */}
-				<div
-					style={{
-						height: "56px",
+						width: "300px",
 						position: "fixed",
+						display:
+							currentScreen === screenList.sm && drawerStatus === false
+								? "none"
+								: "block",
 						top: "0px",
+						bottom: "0px",
+						zIndex: 250,
 						backgroundColor: "#FFFFFF",
-						width: "100%",
 					}}
 				>
-					{renderRightHeader()}
+					{/* Left Content */}
+					<div
+						style={{
+							height: "100vh",
+							overflowY: "auto",
+							paddingTop: "56px",
+						}}
+					>
+						{renderLeftContent()}
+					</div>
 				</div>
 
-				{/* Right Content */}
-				<div>
-					{props.children}
+				{/* Right Side */}
+				<div
+					style={{
+						width: currentScreen === screenList.sm ? "100vw" : "calc(100vw - 300px)",
+						marginLeft: currentScreen === screenList.sm ? "0px" : "300px",
+					}}
+				>
+					{/* Right Content */}
+					<div>{props.children}</div>
 				</div>
 			</div>
+			{renderHeader()}
 		</div>
 	);
 };

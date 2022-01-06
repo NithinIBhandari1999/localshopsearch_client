@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import configKeys from "../../config/keys";
 
@@ -190,10 +191,8 @@ const ShopList = () => {
 												</a>
 											</td>
 											<td>
-												<a
-													href={`/shop/dashboard/${itemShop._id}/`}
-													target="_blank"
-													rel="noreferrer"
+												<Link
+													to={`/shop/dashboard/${itemShop._id}/`}
 												>
 													<div className="border p-2 d-inline-block mx-2 cursor-pointer">
 														<img
@@ -203,7 +202,7 @@ const ShopList = () => {
 														/>{" "}
 														Dashboard
 													</div>
-												</a>
+												</Link>
 												<div
 													className="border p-2 d-inline-block mx-2 cursor-pointer"
 													onClick={() => {
