@@ -231,7 +231,7 @@ const ShopAdd = (props) => {
 	return (
 		<div>
 			<div className="">
-				<div className="p-5 bg-white border">
+				<div className="p-3 p-lg-5 bg-white border">
 					{/* Heading */}
 					<div>
 						<h4 className="primary-color">

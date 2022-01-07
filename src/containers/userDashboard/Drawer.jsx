@@ -141,11 +141,15 @@ const Drawer = (props) => {
 									Logout
 								</Link>
 							)}
-							{currentScreen === screenList.sm && drawerStatus === false && (
+							{currentScreen === screenList.sm && (
 								<img
-									src="/icons/icon_menu.svg"
-									alt="Open Drawer"
-									onClick={() => setDrawerStatus(true)}
+									src={
+										drawerStatus === false
+											? "/icons/icon_menu.svg"
+											: "/icons/icon_close.svg"
+									}
+									alt="Open or Close Drawer"
+									onClick={() => setDrawerStatus(drawerStatus ? false : true)}
 									className="iconOpenClose mx-3"
 								/>
 							)}

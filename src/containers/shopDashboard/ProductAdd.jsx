@@ -169,7 +169,7 @@ const ProductAdd = (props) => {
 	return (
 		<div>
 			<div className="container">
-				<div className="p-5 ">
+				<div className="p-3 p-lg-5">
 					{/* Heading */}
 					<div
 						style={{

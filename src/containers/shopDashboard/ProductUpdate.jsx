@@ -475,7 +475,7 @@ const ProductUpdate = (props) => {
 
 	return (
 		<div>
-			<div className="p-5 bg-white border">
+			<div className="p-3 p-lg-5 bg-white border">
 				{requestGetProductInfo.loading && (
 					<div className="text-center py-4">
 						<div className="spinner-border text-primary" role="status" />

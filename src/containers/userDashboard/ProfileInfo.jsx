@@ -83,8 +83,8 @@ const ProfileInfo = () => {
 
 	return (
 		<div>
-			<div className="container p-5">
-				<div className="p-5 bg-white border">
+			<div className="container p-3 p-lg-5">
+				<div className="p-4 p-lg-5 bg-white border">
 					{/* Heading */}
 					<div>
 						<h4 className="primary-color">

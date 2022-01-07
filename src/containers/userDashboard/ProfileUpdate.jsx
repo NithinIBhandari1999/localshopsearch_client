@@ -113,7 +113,7 @@ const ProfileUpdate = (props) => {
 	return (
 		<div>
 			<div className="container">
-				<div className="p-5 ">
+				<div className="p-3 p-lg-5 ">
 					<div>
 						<h4 className="primary-color">
 							Profile Update

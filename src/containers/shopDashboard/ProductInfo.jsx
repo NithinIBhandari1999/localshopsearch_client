@@ -130,6 +130,7 @@ const ProductInfo = (props) => {
 											src={item?.imageLink}
 											alt=""
 											style={{
+												maxWidth: "80vw",
 												height: "200px",
 												objectFit: "contain",
 											}}
@@ -147,7 +148,7 @@ const ProductInfo = (props) => {
 	return (
 		<div>
 			<div className="container">
-				<div className="p-5 bg-white">
+				<div className="p-3 p-lg-5 bg-white">
 					{requestGetProductInfo.loading && (
 						<div className="text-center py-4">
 							<div className="spinner-border text-primary" role="status" />
