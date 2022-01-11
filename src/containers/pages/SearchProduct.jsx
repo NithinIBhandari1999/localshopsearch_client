@@ -212,7 +212,7 @@ const SearchProduct = () => {
 	// useEffect to set location when currentCoords changed
 	useEffect(() => {
 		if (myMap) {
-			myMap.flyTo([currentCoords.latitude, currentCoords.longitude], 12, {
+			myMap.flyTo([currentCoords.latitude, currentCoords.longitude], 3, {
 				duration: 2.5,
 			});
 			setTimeout(() => {
