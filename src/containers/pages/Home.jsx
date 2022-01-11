@@ -65,7 +65,7 @@ const Home = () => {
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-6 py-3 py-md-5 py-lg-5">
                         <div className="">
-                            <h2>What is LocalShopSearch.com ?</h2>
+                            <h2>What is Local Shop Search ?</h2>
                             <p>
                                 Local Shop Search is a website where
                                 you can find shop information which sell product

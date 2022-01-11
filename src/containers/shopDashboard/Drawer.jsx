@@ -73,6 +73,7 @@ const Drawer = (props) => {
 			iconPrimaryLink: `/assets/image/drawer/active/iconDrawerProduct.svg`,
 		});
 
+		/*
 		tempDrawerItemList.push({
 			itemName: "Statistics",
 			menuType: "main",
@@ -80,6 +81,7 @@ const Drawer = (props) => {
 			iconLink: `/assets/image/drawer/notactive/iconDrawerStatistics.svg`,
 			iconPrimaryLink: `/assets/image/drawer/active/iconDrawerStatistics.svg`,
 		});
+		*/
 
 		if (currentScreen === screenList.sm) {
 			tempDrawerItemList.push({
@@ -155,7 +157,7 @@ const Drawer = (props) => {
 					<div>
 						<div>
 							<Link to={"/"} className="primary-color homepageLink">
-								LocalShopSearch.com
+								Local Shop Search
 							</Link>
 						</div>
 					</div>

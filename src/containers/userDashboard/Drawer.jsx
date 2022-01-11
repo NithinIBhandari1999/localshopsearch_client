@@ -130,7 +130,7 @@ const Drawer = (props) => {
 					<div>
 						<div>
 							<Link to={"/"} className="primary-color homepageLink">
-								LocalShopSearch.com
+								Local Shop Search
 							</Link>
 						</div>
 					</div>
